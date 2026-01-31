@@ -9,20 +9,20 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
     display: flex; 
     margin: 0; 
-    height: 100vh; /* Ocupa el 100% de la altura de la pantalla */
-    overflow: hidden; /* Evita doble barra de scroll */
+    height: 100vh; 
+    overflow: hidden; 
     background: var(--bg-light); 
 }
 
 /* --- SIDEBAR (MENÚ LATERAL) --- */
 nav { 
-    width: 320px; /* Ancho fijo en PC */
-    background: var(--uce-red); 
+    width: 320px; 
+    background: var(--uce-red); /* CORRECTO: Usa el rojo */
     color: var(--text-white); 
     display: flex; 
     flex-direction: column; 
     box-shadow: 2px 0 10px rgba(0,0,0,0.3);
-    flex-shrink: 0; /* Evita que el menú se aplaste */
+    flex-shrink: 0; 
     transition: all 0.3s ease;
 }
 
@@ -34,7 +34,7 @@ nav .profile {
 }
 
 .menu-container {
-    overflow-y: auto; /* Scroll solo en el menú si es muy largo */
+    overflow-y: auto; 
     flex-grow: 1;
 }
 
@@ -58,20 +58,20 @@ nav .profile {
 
 .tab-btn:hover { 
     background: var(--accent); 
-    padding-left: 25px; /* Efecto de movimiento */
+    padding-left: 25px; 
 }
 
 /* --- CONTENIDO DESPLEGABLE --- */
 .tab-content {
-    display: none; /* Oculto por defecto */
+    display: none; 
     background: rgba(0,0,0,0.2);
     animation: fadeIn 0.3s ease-in-out;
 }
 
 .tab-content a {
     display: block;
-    padding: 12px 20px 12px 45px; /* Sangría para jerarquía */
-    color: #cbdcf7;
+    padding: 12px 20px 12px 45px; 
+    color: #ffdce0; /* Un tono rosado claro para que se lea sobre el rojo */
     text-decoration: none;
     font-size: 0.9rem;
     cursor: pointer;
@@ -85,7 +85,6 @@ nav .profile {
     border-left: 4px solid #fff;
 }
 
-/* Clase para mostrar el contenido (JS la activa) */
 .show { display: block; }
 
 /* --- ÁREA PRINCIPAL (VISOR) --- */
@@ -113,11 +112,10 @@ main {
     border: none; 
     width: 100%; 
     height: 100%;
-    background-color: #525659; /* Color de fondo típico de visores PDF */
+    background-color: #525659; 
     display: block;
 }
 
-/* Animación suave para el menú */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-5px); }
     to { opacity: 1; transform: translateY(0); }
@@ -128,33 +126,28 @@ main {
    ========================================= */
 @media (max-width: 768px) {
     body {
-        flex-direction: column; /* Cambia de lado-a-lado a arriba-abajo */
+        flex-direction: column; 
     }
 
-    /* El menú se vuelve una barra superior desplazable */
     nav {
         width: 100%;
         height: auto;
-        max-height: 250px; /* Limita la altura */
-        flex-direction: row; /* Elementos uno al lado del otro */
-        overflow-x: auto; /* Scroll horizontal si no caben */
+        max-height: 250px; 
+        flex-direction: row; 
+        overflow-x: auto; 
         box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         padding: 5px;
     }
 
-    .profile {
-        display: none; /* Ocultamos el perfil en celular para ganar espacio */
-    }
+    .profile { display: none; }
 
     .menu-container {
-        display: flex; /* Pone los botones en fila */
+        display: flex; 
         flex-direction: row;
         width: 100%;
     }
 
-    .menu-section, .tab {
-        flex-shrink: 0; /* Evita que los botones se encojan */
-    }
+    .menu-section, .tab { flex-shrink: 0; }
 
     .tab-btn {
         padding: 10px 15px;
@@ -164,13 +157,12 @@ main {
         border-radius: 5px;
     }
 
-    /* El desplegable ahora flota sobre el contenido */
     .tab-content {
         position: absolute;
-        top: 60px; /* Justo debajo del menú */
+        top: 60px; 
         left: 0;
         width: 100%;
-        background: var(--uce-red);
+        background: var(--uce-red); /* CORREGIDO: Fondo rojo en móvil */
         z-index: 100;
         box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
@@ -181,19 +173,19 @@ main {
         border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
-    /* Ajuste del Header */
     .header-bar {
         font-size: 0.8rem;
         padding: 10px;
     }
 }
+
 /* --- ESTILOS PARA SUB-CARPETAS (Unidades) --- */
 .sub-tab-btn {
     width: 100%;
-    background: rgba(255, 255, 255, 0.05); /* Un poco más claro que el fondo */
+    background: rgba(255, 255, 255, 0.05); 
     border: none;
     color: #e0e0e0;
-    padding: 12px 15px 12px 30px; /* Más sangría a la izquierda */
+    padding: 12px 15px 12px 30px; 
     text-align: left;
     font-size: 0.9rem;
     font-weight: 500;
@@ -209,71 +201,61 @@ main {
     color: #fff;
 }
 
-/* Contenedor de los archivos de la unidad */
 .sub-tab-content {
-    display: none; /* Oculto por defecto */
-    background: rgba(0, 0, 0, 0.4); /* Fondo más oscuro para diferenciar */
-    border-left: 2px solid var(--accent); /* Línea decorativa lateral */
+    display: none; 
+    background: rgba(0, 0, 0, 0.2); 
+    border-left: 2px solid var(--accent); 
 }
 
-.sub-tab-content.show {
-    display: block;
-}
+.sub-tab-content.show { display: block; }
 
-/* Ajuste para los links dentro de sub-carpetas */
 .sub-tab-content a {
-    padding-left: 50px; /* Mucha sangría para que se vea jerárquico */
+    padding-left: 50px; 
     font-size: 0.85rem;
 }
 
-/* Flechita decorativa para las unidades */
 .sub-tab-btn::after {
     content: '▼';
     font-size: 0.7rem;
     opacity: 0.5;
 }
+
 /* --- CONTENEDOR DEL VISOR --- */
 #visor-container {
     flex-grow: 1;
     width: 100%;
     height: 100%;
-    background-color: #525659; /* Fondo gris profesional */
+    background-color: #525659; 
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
 
-/* Estilo para el IFRAME (PDFs) */
-#visor-pdf { 
-    width: 100%; 
-    height: 100%; 
-    border: none;
-    display: none; /* Oculto por defecto, JS lo activará */
-}
-
-/* Estilo para la IMAGEN (Portadas) - LA SOLUCIÓN */
 #visor-img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* ESTO ES LA MAGIA: Ajusta la imagen sin deformar */
-    display: none; /* Oculto por defecto */
-    box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Sombra elegante */
+    object-fit: contain; 
+    display: none; 
+    box-shadow: 0 0 20px rgba(0,0,0,0.5); 
 }
-/* --- PORTADA DIGITAL (ESTILO UCE) --- */
+
+/* --- PORTADA DIGITAL (ESTILO UCE - VERSIÓN ROJA) --- */
 #portada-digital {
-    display: none; /* Oculto por defecto */
+    display: none; 
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    /* CORREGIDO: Gradiente rojizo suave */
+    background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
     position: relative;
     overflow: hidden;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #003366; /* Azul UCE */
-    font-family: 'Segoe UI', serif; /* Fuente elegante */
+    /* CORREGIDO: Texto en rojo */
+    color: var(--uce-red); 
+    font-family: 'Segoe UI', serif; 
 }
 
 /* Barra decorativa lateral */
@@ -283,11 +265,12 @@ main {
     top: 0;
     bottom: 0;
     width: 15px;
-    background: linear-gradient(to bottom, #003366 50%, #cc0000 50%); /* Azul y Rojo UCE */
+    /* CORREGIDO: Barra roja y blanca */
+    background: linear-gradient(to bottom, #cc0000 50%, #ffffff 50%); 
 }
 
 .portada-content {
-    border: 1px solid rgba(0, 51, 102, 0.1);
+    border: 1px solid rgba(204, 0, 0, 0.1);
     background: rgba(255, 255, 255, 0.9);
     padding: 40px 80px;
     border-radius: 10px;
@@ -306,24 +289,21 @@ main {
 #titulo-portada { 
     font-size: 3.5rem; 
     margin: 10px 0; 
-    color: #003366; 
+    /* CORREGIDO: Título en Rojo */
+    color: var(--uce-red); 
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 #subtitulo-portada {
     font-size: 1.8rem;
-    color: #cc0000; /* Rojo para resaltar la sección */
+    color: #444; /* Gris oscuro para contraste */
     margin-bottom: 30px;
     font-weight: 300;
 }
 
 .student-info p { margin: 5px 0; font-size: 1.1rem; }
 
-/* AJUSTE PARA MÓVILES */
 @media (max-width: 768px) {
     #titulo-portada { font-size: 2rem; }
     .portada-content { padding: 20px; width: 95%; }
 }
-
-
-

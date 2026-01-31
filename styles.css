@@ -1,0 +1,327 @@
+:root { 
+    --uce-blue: #003366; 
+    --accent: #0055aa; 
+    --bg-light: #f4f7f6;
+    --text-white: #ffffff;
+}
+
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    display: flex; 
+    margin: 0; 
+    height: 100vh; /* Ocupa el 100% de la altura de la pantalla */
+    overflow: hidden; /* Evita doble barra de scroll */
+    background: var(--bg-light); 
+}
+
+/* --- SIDEBAR (MENÚ LATERAL) --- */
+nav { 
+    width: 320px; /* Ancho fijo en PC */
+    background: var(--uce-blue); 
+    color: var(--text-white); 
+    display: flex; 
+    flex-direction: column; 
+    box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+    flex-shrink: 0; /* Evita que el menú se aplaste */
+    transition: all 0.3s ease;
+}
+
+nav .profile { 
+    padding: 25px; 
+    text-align: center; 
+    border-bottom: 1px solid rgba(255,255,255,0.1); 
+    background: rgba(0,0,0,0.1);
+}
+
+.menu-container {
+    overflow-y: auto; /* Scroll solo en el menú si es muy largo */
+    flex-grow: 1;
+}
+
+/* --- BOTONES Y PESTAÑAS --- */
+.tab-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--text-white);
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tab-btn:hover { 
+    background: var(--accent); 
+    padding-left: 25px; /* Efecto de movimiento */
+}
+
+/* --- CONTENIDO DESPLEGABLE --- */
+.tab-content {
+    display: none; /* Oculto por defecto */
+    background: rgba(0,0,0,0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.tab-content a {
+    display: block;
+    padding: 12px 20px 12px 45px; /* Sangría para jerarquía */
+    color: #cbdcf7;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+    transition: 0.2s;
+}
+
+.tab-content a:hover { 
+    color: white; 
+    background: rgba(255,255,255,0.1); 
+    border-left: 4px solid #fff;
+}
+
+/* Clase para mostrar el contenido (JS la activa) */
+.show { display: block; }
+
+/* --- ÁREA PRINCIPAL (VISOR) --- */
+main { 
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; 
+    width: 100%;
+    position: relative;
+}
+
+.header-bar {
+    background: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+/* --- EL VISOR DE PDF/IMÁGENES --- */
+#visor-pdf { 
+    flex-grow: 1; 
+    border: none; 
+    width: 100%; 
+    height: 100%;
+    background-color: #525659; /* Color de fondo típico de visores PDF */
+    display: block;
+}
+
+/* Animación suave para el menú */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   📱 MODO CELULAR / TABLET (RESPONSIVE)
+   ========================================= */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; /* Cambia de lado-a-lado a arriba-abajo */
+    }
+
+    /* El menú se vuelve una barra superior desplazable */
+    nav {
+        width: 100%;
+        height: auto;
+        max-height: 250px; /* Limita la altura */
+        flex-direction: row; /* Elementos uno al lado del otro */
+        overflow-x: auto; /* Scroll horizontal si no caben */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        padding: 5px;
+    }
+
+    .profile {
+        display: none; /* Ocultamos el perfil en celular para ganar espacio */
+    }
+
+    .menu-container {
+        display: flex; /* Pone los botones en fila */
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .menu-section, .tab {
+        flex-shrink: 0; /* Evita que los botones se encojan */
+    }
+
+    .tab-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        border-bottom: none;
+        border-right: 1px solid rgba(255,255,255,0.1);
+        border-radius: 5px;
+    }
+
+    /* El desplegable ahora flota sobre el contenido */
+    .tab-content {
+        position: absolute;
+        top: 60px; /* Justo debajo del menú */
+        left: 0;
+        width: 100%;
+        background: var(--uce-blue);
+        z-index: 100;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+    
+    .tab-content a {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Ajuste del Header */
+    .header-bar {
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+}
+/* --- ESTILOS PARA SUB-CARPETAS (Unidades) --- */
+.sub-tab-btn {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05); /* Un poco más claro que el fondo */
+    border: none;
+    color: #e0e0e0;
+    padding: 12px 15px 12px 30px; /* Más sangría a la izquierda */
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sub-tab-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* Contenedor de los archivos de la unidad */
+.sub-tab-content {
+    display: none; /* Oculto por defecto */
+    background: rgba(0, 0, 0, 0.4); /* Fondo más oscuro para diferenciar */
+    border-left: 2px solid var(--accent); /* Línea decorativa lateral */
+}
+
+.sub-tab-content.show {
+    display: block;
+}
+
+/* Ajuste para los links dentro de sub-carpetas */
+.sub-tab-content a {
+    padding-left: 50px; /* Mucha sangría para que se vea jerárquico */
+    font-size: 0.85rem;
+}
+
+/* Flechita decorativa para las unidades */
+.sub-tab-btn::after {
+    content: '▼';
+    font-size: 0.7rem;
+    opacity: 0.5;
+}
+/* --- CONTENEDOR DEL VISOR --- */
+#visor-container {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    background-color: #525659; /* Fondo gris profesional */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Estilo para el IFRAME (PDFs) */
+#visor-pdf { 
+    width: 100%; 
+    height: 100%; 
+    border: none;
+    display: none; /* Oculto por defecto, JS lo activará */
+}
+
+/* Estilo para la IMAGEN (Portadas) - LA SOLUCIÓN */
+#visor-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* ESTO ES LA MAGIA: Ajusta la imagen sin deformar */
+    display: none; /* Oculto por defecto */
+    box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Sombra elegante */
+}
+/* --- PORTADA DIGITAL (ESTILO UCE) --- */
+#portada-digital {
+    display: none; /* Oculto por defecto */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    position: relative;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #003366; /* Azul UCE */
+    font-family: 'Segoe UI', serif; /* Fuente elegante */
+}
+
+/* Barra decorativa lateral */
+.uce-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 15px;
+    background: linear-gradient(to bottom, #003366 50%, #cc0000 50%); /* Azul y Rojo UCE */
+}
+
+.portada-content {
+    border: 1px solid rgba(0, 51, 102, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px 80px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    max-width: 800px;
+    width: 90%;
+}
+
+.uni-title { font-size: 1.4rem; letter-spacing: 1px; margin: 0; font-weight: 700; text-transform: uppercase; }
+.facu-title { font-size: 1rem; color: #444; margin: 5px 0 0 0; font-weight: 400; }
+.carrera-text { font-size: 0.9rem; color: #666; margin-bottom: 20px; font-style: italic; }
+
+.separator { border: 0; height: 2px; background: #cc0000; width: 50%; margin: 20px auto; }
+
+/* El título gigante que cambia */
+#titulo-portada { 
+    font-size: 3.5rem; 
+    margin: 10px 0; 
+    color: #003366; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+#subtitulo-portada {
+    font-size: 1.8rem;
+    color: #cc0000; /* Rojo para resaltar la sección */
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.student-info p { margin: 5px 0; font-size: 1.1rem; }
+
+/* AJUSTE PARA MÓVILES */
+@media (max-width: 768px) {
+    #titulo-portada { font-size: 2rem; }
+    .portada-content { padding: 20px; width: 95%; }
+}
+

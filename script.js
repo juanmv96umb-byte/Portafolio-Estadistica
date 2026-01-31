@@ -76,5 +76,6 @@ function visualizar(rutaCompleta) {
 /* 6. INICIALIZACIÓN AL CARGAR LA PÁGINA */
 window.onload = function() {
     // En lugar de una imagen, mostramos la portada digital de bienvenida
-    mostrarPortada('MATEMÁTICAS IV', 'PORTAFOLIO ESTUDIANTIL');
+    mostrarPortada('ESTADÍSTICA', 'PORTAFOLIO ESTUDIANTIL');
 };
+

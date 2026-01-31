@@ -1,6 +1,6 @@
 :root { 
     --uce-red: #cc0000; 
-    --accent: #0055aa; 
+    --accent: #990000; 
     --bg-light: #f4f7f6;
     --text-white: #ffffff;
 }
@@ -17,7 +17,7 @@ body {
 /* --- SIDEBAR (MENÚ LATERAL) --- */
 nav { 
     width: 320px; /* Ancho fijo en PC */
-    background: var(--uce-blue); 
+    background: var(--uce-red); 
     color: var(--text-white); 
     display: flex; 
     flex-direction: column; 
@@ -170,7 +170,7 @@ main {
         top: 60px; /* Justo debajo del menú */
         left: 0;
         width: 100%;
-        background: var(--uce-blue);
+        background: var(--uce-red);
         z-index: 100;
         box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
@@ -324,5 +324,6 @@ main {
     #titulo-portada { font-size: 2rem; }
     .portada-content { padding: 20px; width: 95%; }
 }
+
 
 
